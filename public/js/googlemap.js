@@ -49,7 +49,7 @@ function MapViewModel() {
     	navigator.geolocation.getCurrentPosition(function(pos){
     			var lat = pos.coords.latitude;
     			var lng = pos.coords.longitude;
-    			var url = 'http://maps.googleapis.com/maps/api/geocode/json?latlng='+lat+','+lng+'&sensor=true';
+    			var url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng='+lat+','+lng+'&sensor=true';
     			$.get(url,function(res){
     				var address = res.results[0]["address_components"];
     				self.searchAddress(address[address.length-1]["long_name"]);
