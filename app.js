@@ -4,7 +4,7 @@ var http = require('https');
 
 
 var app = express();
-var port = 1000;
+var port = process.env.PORT || 1000;
 
 app.use(express.static('public'));
 app.use(express.static('bower_components'));
