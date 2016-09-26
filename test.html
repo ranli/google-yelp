@@ -17,16 +17,32 @@
   </head>
   <body>
     <div id="map"></div>
-    <script>
-      var map;
-      function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: -34.397, lng: 150.644},
-          zoom: 8
-        });
-      }
-    </script>
+    
+    <script src="./bower_components/jquery/dist/jquery.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBtMwHi45G46oowhbaT-nREz0Gxp2ZZ7aE&callback=initMap"
     async defer></script>
+    <script>
+
+
+      var map;
+      function initMap() {
+         function getCurrentLocation(){
+            var curloc = [];
+            
+           return curloc;
+        }
+        var myLatlng1 = new google.maps.LatLng(53.65914, 0.072050);
+        var c = new google.maps.LatLng(getCurrentLocation()[0],getCurrentLocation()[1]);
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: myLatlng1,
+          zoom: 8
+        });
+        $.getJSON('http://ipinfo.io', function(data){
+            var c = new google.maps.LatLng(Number(data.loc.split(',')[0]),Number(data.loc.split(',')[1]));
+             map.setCenter(c)
+            });
+        //map.setCenter(c);
+      }
+    </script>
   </body>
 </html

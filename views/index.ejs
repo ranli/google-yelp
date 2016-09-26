@@ -3,40 +3,54 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Map</title>
-	<style>
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-      #map {
-        height: 100%;
-   
-      }
-      #sidebar {
-		position:absolute; 
-      	height:100%;
-      	width:10%;
-      	z-index: 4;
-      }
-    </style>
+  <link rel="stylesheet" type="text/css" href="/css/styles.css">
 </head>
 <body>
-<div id="sidebar">
-	asdasdas
+<div id="sidebar" data-bind="visible: businessList().length > 0">
+  <ul class="businesses" data-bind="foreach: businessList">
+    <li class="business" data-bind="click: $parent.clickedListToMarker"> 
+      <div class="left">
+        <a data-bind="attr: {href: url}"><img class="img-circle" data-bind="attr: { src: image_url }"></a>
+      </div>
+      <div class="right">
+        <div class="maincont">
+          <h4><span data-bind="text: idView"></span><span data-bind="text: title"></span></h4>
+          <div class="rating-very-large">  
+              <i data-bind="attr: {class: rating}"></i>
+          </div>
+          <strong>
+          <span data-bind="text: price"></span>
+          </strong>
+          <span data-bind = "text: category"></span>
+        </div>
+      </div>
+      <div class="down">
+        <p data-bind="text: address"></p>
+        <p data-bind="text: city"></p>
+        <p data-bind="text: phone"></p>
+      </div>
+    </li>
+  </ul>   
 </div>
-<div id="map">
-	
+<div id="searchForm">
+  <form data-bind="submit: getYelp">
+    <div class="form-group">
+      <label for="searchTerm">Find:</label>
+      <input name="searchTerm" id="searchTerm" data-bind="value: searchTerm" placeholder="search for something...">
+    </div>
+    <div class="form-group">
+      <label for="searchAddress">Near:</label>
+     <input name="searchAddress" id="searchAddress" data-bind="value: searchAddress">
+    </div>
+    <button type="submit">Search</button>
+  </form>
+</div>
+<div id="map">	
 </div>
 
-
-	
+<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBtMwHi45G46oowhbaT-nREz0Gxp2ZZ7aE"></script>
 <script src="/jquery/dist/jquery.min.js"></script>
-<script src="/knockout/dist/knockout.js"></script>	
+<script src="/knockout/dist/knockout.js"></script>
 <script src="/js/googlemap.js"></script>
-<script async defer
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBtMwHi45G46oowhbaT-nREz0Gxp2ZZ7aE&callback=initMap">
-</script>
 </body>
-	
 </html>
